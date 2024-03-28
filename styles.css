@@ -1,0 +1,112 @@
+body {
+	background-color: rgb(29, 29, 29);
+}
+
+nav {
+	width: 100%;
+	height: 58px;
+}
+nav img {
+	height: 100%;
+	width: auto;
+}
+
+nav ul {
+	display: none;
+	background-color: rebeccapurple;
+}
+
+main {
+	min-height: 90vh;
+	margin: 0;
+}
+
+li {
+	list-style: none;
+}
+img {
+	height: 200px;
+	width: auto;
+}
+
+h1 {
+	color: white;
+	text-align: center;
+	font-size: 32px;
+}
+
+#search {
+	margin: 0 auto;
+	display: block;
+	width: 600px;
+	height: 40px;
+	padding: 10px 25px;
+	background-color: rgb(33, 33, 36);
+	color: white;
+	font-size: 32px;
+	border-radius: 40px;
+}
+
+#lista {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+}
+
+#lista li {
+	margin: 5px;
+}
+
+#loadingContainer {
+	display: flex;
+	margin: 0 auto;
+	align-items: center;
+	justify-content: center;
+}
+
+#loadingContainer > h3 {
+	color: white;
+	text-align: center;
+	font-size: 32px;
+}
+
+footer {
+	position: relative;
+	top: 100%;
+	width: 100%;
+	height: 32px;
+	padding: 10px;
+}
+
+footer > a {
+	display: block;
+	width: max-content;
+	margin: 0 auto;
+	color: white;
+	text-decoration: none;
+	font-size: 20px;
+}
+
+/* Animations */
+
+#loading {
+	width: 48px;
+	height: 48px;
+	border: 5px solid rgb(167, 51, 151);
+	border-bottom-color: transparent;
+	border-radius: 50%;
+	display: inline-block;
+	box-sizing: border-box;
+	animation: rotation 1s linear infinite;
+	margin-left: 15px;
+}
+
+@keyframes rotation {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
