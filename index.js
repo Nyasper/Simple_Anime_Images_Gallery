@@ -7,8 +7,7 @@ searchBar.addEventListener('keyup', (e) => {
   {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
-      const searchQuery = e.target.value.toLowerCase().replaceAll(" ", "_")
-      console.log({ searchQuery })
+      const searchQuery = e.target.value
       addImages(searchQuery);
     }, 2000);
   }
@@ -28,8 +27,8 @@ window.addEventListener('scrollend', async () => {
       page += 1;
     } else
     {
-      stopPageLoader = true;
       replaceLoadingWithEndPage();
+      stopPageLoader = true;
     }
   }
 
@@ -74,12 +73,14 @@ function replaceLoadingWithEndPage() {
 async function loadNextPage(pageNumber = 2) {
   const tagSearch = searchBar.value;
   const images = await fetchData(tagSearch, pageNumber);
+
   createLiElements(images)
+
   return images.length < 40 ? false : true;
 }
 
 
-async function fetchData(tagSearch, page = 1) {
+async function fetchData(searchQuery, page = 1) {
   const rating = {
     all: "",
     safe: "s",
@@ -88,10 +89,9 @@ async function fetchData(tagSearch, page = 1) {
   };
   try
   {
-    const res = await fetch(`https://yande.re/post.json?tags=${rating.safe} ${tagSearch}&page=${page}`);
+    searchQuery = searchQuery.toLowerCase().replaceAll(" ", "_")
+    const res = await fetch(`https://yande.re/post.json?tags=${rating.safe} ${searchQuery}&page=${page}`);
     const data = await res.json();
-
-    console.log(data);
     return data
   } catch (error)
   {
@@ -99,11 +99,6 @@ async function fetchData(tagSearch, page = 1) {
     return [];
   }
 }
-
-//yowayowachimpo artista con 11 img
-//xiujia_yihuizi tiene 74 elementos
-//rias_gremory
-//lucy_heartfilia
 
 async function addImages(tagSearch) {
   deleteLiElements()
@@ -119,7 +114,7 @@ function createLiElements(dataFetched) {
     const aElement = document.createElement("a");
     const imgElement = document.createElement('img');
     img.preview_url ? imgElement.setAttribute("src", img.preview_url) : undefined;
-    aElement.setAttribute("href", `https://yande.re/post/show/${img.id}`)
+    aElement.setAttribute("href", img.file_url)
     aElement.setAttribute("target", "_blank")
     aElement.append(imgElement)
     liElement.append(aElement)
