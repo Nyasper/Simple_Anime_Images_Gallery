@@ -92,6 +92,7 @@ async function fetchData(searchQuery, page = 1) {
     searchQuery = searchQuery.toLowerCase().replaceAll(" ", "_")
     const res = await fetch(`https://yande.re/post.json?tags=${rating.safe} ${searchQuery}&page=${page}`);
     const data = await res.json();
+    console.log('buscando:', searchQuery)
     return data
   } catch (error)
   {
