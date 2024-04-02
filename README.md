@@ -7,6 +7,12 @@ The images are received thanks to the public API of the website: [yande.re](http
 
 This website was made simply with html, css, and pure javascript.
 
+# Screenshots
+
+![home](/screenshots/home.png)
+
+![search](screenshots/search.png)
+
 ## How to Search
 
 To search, simply type a lowercase term into the search bar separated by spaces " " or "\_" between words.  
