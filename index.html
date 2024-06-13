@@ -5,27 +5,54 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="styles.css" />
 		<link rel="icon" href="public/favIcon.svg" type="image/x-icon" />
-		<script src="./js/main.js" defer type="module"></script>
+		<script defer src="./js/main.js" type="module"></script>
 		<title>Anime Image Gallery</title>
 	</head>
 	<body>
 		<main id="mainContainer">
 			<h1>Anime Image Search</h1>
-			<input
-				type="text"
-				name="search"
-				id="search"
-				placeholder="search animes, characters images..."
-			/>
+			<div id="formContainer">
+				<input
+					type="text"
+					name="search"
+					id="search"
+					class="border"
+					placeholder="search images of animes, characters..."
+				/>
+				<button type="button" id="clearButton" class="border">Clear</button>
+			</div>
+
 			<ul id="lista"></ul>
+			<div id="loadingContainer"></div>
+
+			<section id="slide" class="border">
+				<h3>Filter:</h3>
+
+				<label for="safe"
+					>Safe
+					<input type="checkbox" name="safe" id="safeCheck" checked />
+				</label>
+
+				<label for="questionable"
+					>Questionable
+					<input type="checkbox" name="questionable" id="questionableCheck" />
+				</label>
+
+				<label for="explicit"
+					>Explicit (+18)
+					<input type="checkbox" name="explicit" id="explicitCheck" />
+				</label>
+			</section>
 		</main>
 		<footer>
 			<a
-				href="https://github.com/Nyasper/Simple_Image_Search.git"
+				id="githubSection"
+				href="https://github.com/Nyasper/Simple_Anime_Images_Gallery.git"
 				target="_blank"
 				rel="noopener noreferrer"
 			>
-				My Github
+				<img id="githubIcon" src="/public/github.svg" alt="" />
+				<p>Source Code</p>
 			</a>
 		</footer>
 	</body>
