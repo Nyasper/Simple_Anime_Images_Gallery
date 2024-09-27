@@ -8,7 +8,7 @@ export const ulSelector = document.getElementById('lista');
 // loading
 export const loadingIndicatorMessage = document.getElementById('loadingIndicatorMessage');
 export const loadingIcon = document.getElementById('loading');
-export const loadingContainer = document.getElementById("loadingContainer");
+export const indicatorContainer = document.getElementById("indicatorContainer");
 
-// various
+// others
 export const hideClass = 'hide';

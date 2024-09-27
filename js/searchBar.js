@@ -16,4 +16,5 @@ export function searchBarAction(e) {
 
 export function clearButtonAction() {
   searchBar.value = ""
+  searchBar.focus();
 }

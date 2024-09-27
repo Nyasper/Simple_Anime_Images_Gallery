@@ -1,5 +1,5 @@
 import { LocalStorageHandler } from "./localStorageHandler.js";
-import { Indicator } from "./Indicator.js";
+import * as LoadingIndicator from "./loadingIndicator.js";
 
 export class ImageAPI {
 
@@ -24,7 +24,6 @@ export class ImageAPI {
   #searchTerm;
   #rating = ImageAPI.ratings.default;
 
-  #loadingIndicator = new Indicator();
   #hasNextPage = false;
 
   #definitiveLimit = 40;
@@ -101,6 +100,7 @@ export class ImageAPI {
   }
 
   resetApiImage() {
+    LoadingIndicator.resetLoading();
     this.#page = 1;
     this.#searchTerm = '';
     this.#hasNextPage = false;
@@ -109,7 +109,7 @@ export class ImageAPI {
   async getImages() {
     try 
     {
-      this.#loadingIndicator.startLoading(this.#searchTerm);
+      LoadingIndicator.startLoading(this.#searchTerm);
 
       const url = this.#updatedUrl();
       const response = await fetch(url);
@@ -121,12 +121,12 @@ export class ImageAPI {
       this.#hasNextPage = images.length === this.#perPageLimit;
       if (this.#hasNextPage)
       {
-        this.#loadingIndicator.showEndMessage(`${this.#searchTerm} results, page ${this.#page}/?`)
+        LoadingIndicator.showEndMessage(`${this.#searchTerm} results, page ${this.#page}/?`)
       }
       else 
       {
-        if (images.length > 0) this.#loadingIndicator.showEndMessage(`${this.#page}/${this.#page} pages loaded.`);
-        else this.#loadingIndicator.showEndMessage(`No Results for "${this.#searchTerm}".`)
+        if (images.length > 0) LoadingIndicator.showEndMessage(`${this.#page}/${this.#page} pages loaded.`);
+        else LoadingIndicator.showEndMessage(`No Results for "${this.#searchTerm}".`)
       }
 
       return images
@@ -134,7 +134,7 @@ export class ImageAPI {
     catch (error)
     {
       console.error(error);
-      this.#loadingIndicator.showEndMessage(`something went wrong.`)
+      LoadingIndicator.showEndMessage(`something went wrong.`)
       return []
     }
   }

@@ -33,28 +33,34 @@ body {
 	display: flex;
 	align-items: center;
 	padding: 15px 0;
+	padding-bottom: 80px;
 }
 
 #header > h1 {
+	display: flex;
+	display: none;
+	justify-content: center;
+	gap: 5px;
 	color: white;
-	/* padding: 15px; */
-	font-size: 32px;
+	font-size: 26px;
 	margin: 0 20px;
 	flex-shrink: 1;
+}
+
+#header > h1 > img {
+	margin: 0 5px;
 }
 
 /* SearchBar */
 
 #searchBarContainer {
-	/* margin: 0 auto; */
-	margin-left: auto;
-	justify-content: end;
 	display: flex;
-	flex-direction: column;
-	position: relative;
+	flex-direction: row;
 	gap: 5px;
 	justify-content: center;
+	width: 100%;
 	padding: 0 20px;
+	padding-top: 30px;
 }
 
 #searchBar {
@@ -86,20 +92,21 @@ body {
 }
 
 /* Loading container */
-#loadingContainer {
+#indicatorContainer {
+	position: fixed;
 	display: flex;
-	margin-left: 25px;
-	margin-right: auto;
-	height: 100%;
+	bottom: 0;
+	left: 0;
+	margin-left: 15px;
+	height: max-content;
 	width: max-content;
 	align-items: center;
 	justify-content: center;
 }
 
-#loadingContainer > h3 {
+#indicatorContainer > h3 {
 	color: white;
 	text-align: center;
-	/* font-size: 32px; */
 }
 
 /* github icon */
@@ -108,7 +115,6 @@ body {
 	width: max-content;
 	height: 100%;
 	display: flex;
-	/* align-items: center; */
 	margin-left: auto;
 	margin-right: 5px;
 }
@@ -180,11 +186,86 @@ body {
 
 /* Media Screen */
 @media (min-width: 768px) {
+	#header {
+		grid-template: header;
+		display: flex;
+		align-items: center;
+		padding: 15px 0;
+	}
+
+	#header > h1 {
+		display: flex;
+		justify-content: center;
+		gap: 5px;
+		color: white;
+		font-size: 26px;
+		margin: 0 20px;
+		flex-shrink: 1;
+	}
+
+	#header > h1 > img {
+		margin: 0 5px;
+	}
+
+	#searchBarContainer {
+		margin-left: auto;
+		justify-content: end;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		gap: 5px;
+		justify-content: center;
+		padding: 0 20px;
+	}
+
+	#searchBar {
+		display: block;
+		width: 100%;
+		margin: 5px auto;
+		padding: 10px 25px;
+		background-color: rgb(33, 33, 33);
+		color: white;
+		font-size: 16px;
+	}
+
+	#clearButton {
+		width: 160px;
+		height: 50px;
+		margin: 5px auto;
+		font-size: 20px;
+		background-color: rgb(31, 31, 31);
+		padding: 0px 30px;
+	}
+
+	#clearButton:hover {
+		background-color: rgb(20, 20, 20);
+		cursor: pointer;
+	}
+
+	#clearButton:active {
+		background-color: rgb(0, 0, 0);
+	}
+
 	#searchBarContainer {
 		flex-direction: row;
 		width: 700px;
-		/* margin: 0 auto; */
 		gap: 15px;
+	}
+
+	#indicatorContainer {
+		display: flex;
+		position: static;
+		margin-left: 25px;
+		margin-right: auto;
+		height: 100%;
+		width: max-content;
+		align-items: center;
+		justify-content: center;
+	}
+
+	#indicatorContainer > h3 {
+		color: white;
+		text-align: center;
 	}
 
 	#lista {

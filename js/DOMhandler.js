@@ -1,5 +1,5 @@
 import { ImageAPI } from "./imageApi.js";
-import { loadingContainer, ulSelector as ulList } from "./selectors.js";
+import { ulSelector as ulList } from "./selectors.js";
 import { fetchNextPage, currentSearchTerm } from "./globalStates.js";
 
 document.addEventListener("custom:loadNextPage", async () => {
@@ -20,11 +20,8 @@ document.addEventListener("custom:loadNextPage", async () => {
 
 })
 
-// api 
 const api = new ImageAPI();
 
-// ul Modification
-// Enter a new Search
 export async function newImageSearch() {
 
   // reset states
