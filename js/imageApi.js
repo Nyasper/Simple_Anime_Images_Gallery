@@ -1,4 +1,6 @@
 import { LocalStorageHandler } from "./localStorageHandler.js";
+import { Indicator } from "./Indicator.js";
+
 export class ImageAPI {
 
   static ratings = {
@@ -22,6 +24,7 @@ export class ImageAPI {
   #searchTerm;
   #rating = ImageAPI.ratings.default;
 
+  #loadingIndicator = new Indicator();
   #hasNextPage = false;
 
   #definitiveLimit = 40;
@@ -34,6 +37,7 @@ export class ImageAPI {
     if (typeof value === 'number' && value > 0)
     {
       this.#page = value;
+
     } else
     {
       throw new Error('La página debe ser un número positivo.');
@@ -103,13 +107,36 @@ export class ImageAPI {
   }
 
   async getImages() {
-    const url = this.#updatedUrl();
-    const response = await fetch(url);
+    try 
+    {
+      this.#loadingIndicator.startLoading(this.#searchTerm);
 
-    const images = await response.json();
-    this.#hasNextPage = images.length === this.#perPageLimit;
+      const url = this.#updatedUrl();
+      const response = await fetch(url);
 
-    return images
+      const images = await response.json();
+
+
+      // has next page
+      this.#hasNextPage = images.length === this.#perPageLimit;
+      if (this.#hasNextPage)
+      {
+        this.#loadingIndicator.showEndMessage(`${this.#searchTerm} results, page ${this.#page}/?`)
+      }
+      else 
+      {
+        if (images.length > 0) this.#loadingIndicator.showEndMessage(`${this.#page}/${this.#page} pages loaded.`);
+        else this.#loadingIndicator.showEndMessage(`No Results for "${this.#searchTerm}".`)
+      }
+
+      return images
+    }
+    catch (error)
+    {
+      console.error(error);
+      this.#loadingIndicator.showEndMessage(`something went wrong.`)
+      return []
+    }
   }
 }
 

@@ -3,56 +3,57 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="styles.css" />
 		<link rel="icon" href="public/favIcon.svg" type="image/x-icon" />
+		<link rel="stylesheet" href="css/styles.css" />
 		<script defer src="./js/main.js" type="module"></script>
 		<title>Anime Image Gallery</title>
 	</head>
 	<body>
-		<main id="mainContainer">
+		<header id="header">
 			<h1>Anime Image Search</h1>
-			<div id="formContainer">
+			<div id="searchBarContainer">
 				<input
 					type="text"
 					name="search"
-					id="search"
+					id="searchBar"
 					class="border"
 					placeholder="search images of animes, characters..."
 				/>
 				<button type="button" id="clearButton" class="border">Clear</button>
 			</div>
 
-			<ul id="lista"></ul>
-			<div id="loadingContainer"></div>
+			<div id="loadingContainer">
+				<h3 id="loadingIndicatorMessage">Type at leats 2 characters...</h3>
+				<span id="loading" class="hide"></span>
+			</div>
 
-			<section id="slide" class="border">
-				<h3>Filter:</h3>
-
-				<label for="safe"
-					>Safe
-					<input type="checkbox" name="safe" id="safeCheck" checked />
-				</label>
-
-				<label for="questionable"
-					>Questionable
-					<input type="checkbox" name="questionable" id="questionableCheck" />
-				</label>
-
-				<label for="explicit"
-					>Explicit (+18)
-					<input type="checkbox" name="explicit" id="explicitCheck" />
-				</label>
-			</section>
-		</main>
-		<footer>
 			<a
-				id="githubSection"
 				href="https://github.com/Nyasper/Simple_Anime_Images_Gallery.git"
 				target="_blank"
 			>
-				<img id="githubIcon" src="/public/github.svg" alt="github-icon" />
-				<p>Source Code</p>
+				<img src="public/github.svg" alt="github-icon" />
 			</a>
-		</footer>
+		</header>
+
+		<ul id="lista"></ul>
+
+		<aside id="slide" class="border">
+			<h3>Filter:</h3>
+
+			<label for="safe"
+				>Safe
+				<input type="checkbox" name="safe" id="safeCheck" checked />
+			</label>
+
+			<label for="questionable"
+				>Questionable
+				<input type="checkbox" name="questionable" id="questionableCheck" />
+			</label>
+
+			<label for="explicit"
+				>Explicit (+18)
+				<input type="checkbox" name="explicit" id="explicitCheck" />
+			</label>
+		</aside>
 	</body>
 </html>

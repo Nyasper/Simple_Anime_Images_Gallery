@@ -1,4 +1,4 @@
-import { searchBar } from "./main.js";
+import { searchBar } from "./selectors.js";
 import { currentSearchTerm } from "./globalStates.js";
 import { newImageSearch } from "./DOMhandler.js";
 
