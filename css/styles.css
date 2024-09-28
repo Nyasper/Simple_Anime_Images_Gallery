@@ -14,6 +14,9 @@ body {
 	padding: 0;
 	height: 100%;
 }
+li {
+	list-style: none;
+}
 
 body {
 	min-height: 100vh;
@@ -54,10 +57,12 @@ body {
 /* SearchBar */
 
 #searchBarContainer {
+	position: relative;
 	display: flex;
 	flex-direction: row;
 	gap: 5px;
 	justify-content: center;
+	align-items: center;
 	width: 100%;
 	padding: 0 20px;
 	padding-top: 30px;
@@ -74,17 +79,35 @@ body {
 }
 
 #clearButton {
-	width: 160px;
-	height: 50px;
+	height: 40px;
 	margin: 5px auto;
 	font-size: 20px;
 	background-color: rgb(31, 31, 31);
 	padding: 0px 30px;
 }
 
-#clearButton:hover {
-	background-color: rgb(20, 20, 20);
-	cursor: pointer;
+#suggestions {
+	position: absolute;
+	border-radius: 10px;
+	padding: 0;
+	top: 95%;
+	left: 40px;
+	width: 78%;
+	max-height: 400px;
+	overflow-y: auto;
+	margin-top: 5px;
+	background-color: transparent;
+}
+
+.suggestionItem {
+	padding: 10px;
+	margin: 5px 0;
+	background-color: rgb(34, 34, 34);
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	width: 100%;
+	border-radius: 10px;
 }
 
 #clearButton:active {
@@ -228,15 +251,6 @@ body {
 		font-size: 16px;
 	}
 
-	#clearButton {
-		width: 160px;
-		height: 50px;
-		margin: 5px auto;
-		font-size: 20px;
-		background-color: rgb(31, 31, 31);
-		padding: 0px 30px;
-	}
-
 	#clearButton:hover {
 		background-color: rgb(20, 20, 20);
 		cursor: pointer;
@@ -250,6 +264,17 @@ body {
 		flex-direction: row;
 		width: 700px;
 		gap: 15px;
+	}
+	#suggestions {
+		max-height: 400px;
+		left: 20px;
+		font-size: 20px;
+	}
+
+	.suggestionItem:hover {
+		cursor: pointer;
+		background-color: rgb(34, 34, 34);
+		border-radius: 10px;
 	}
 
 	#indicatorContainer {

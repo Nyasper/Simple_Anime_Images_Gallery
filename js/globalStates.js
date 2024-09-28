@@ -1,6 +1,8 @@
+import { searchBar } from "./selectors.js";
+
 // Search Bar Value
 export const currentSearchTerm = {
-  value: ''
+  value: searchBar.value
 };
 
 // flag for loading next page

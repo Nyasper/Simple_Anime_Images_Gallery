@@ -1,5 +1,6 @@
 // searchBar
 export const searchBar = document.getElementById("searchBar");
+export const suggestionsBox = document.getElementById('suggestions');
 export const clearButton = document.getElementById('clearButton');
 
 // list

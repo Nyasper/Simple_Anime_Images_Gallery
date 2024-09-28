@@ -49,12 +49,17 @@ export class ImageAPI {
   set searchTerm(value) {
     if (typeof value === 'string')
     {
-      this.#searchTerm = value;
-    } else
+      this.#searchTerm = this.#cleanSearchFormat(value);
+    }
+    else
     {
       throw new Error('El término de búsqueda debe ser una cadena.');
     }
   }
+  get searchTerm() {
+    return this.#searchTerm.replaceAll('_', ' ')
+  }
+
   get hasNextPage() {
     return this.#hasNextPage;
   }
@@ -99,6 +104,10 @@ export class ImageAPI {
     return url;
   }
 
+  #cleanSearchFormat(searchTerm) {
+    return searchTerm.trim().replaceAll(' ', '_').toLowerCase();
+  }
+
   resetApiImage() {
     LoadingIndicator.resetLoading();
     this.#page = 1;
@@ -109,7 +118,7 @@ export class ImageAPI {
   async getImages() {
     try 
     {
-      LoadingIndicator.startLoading(this.#searchTerm);
+      LoadingIndicator.startLoading(this.searchTerm);
 
       const url = this.#updatedUrl();
       const response = await fetch(url);
@@ -121,7 +130,7 @@ export class ImageAPI {
       this.#hasNextPage = images.length === this.#perPageLimit;
       if (this.#hasNextPage)
       {
-        LoadingIndicator.showEndMessage(`${this.#searchTerm} results, page ${this.#page}/?`)
+        LoadingIndicator.showEndMessage(`${this.searchTerm} results, page ${this.#page}/?`)
       }
       else 
       {
@@ -146,12 +155,15 @@ const questionableCheck = document.getElementById("questionableCheck");
 const explicitCheck = document.getElementById("explicitCheck");
 const filterCheckboxs = [safeCheck, questionableCheck, explicitCheck];
 
+
 // update checked boxes with Local Storage Values
 const LShandler = new LocalStorageHandler("filters");
 const filtersInLS = LShandler.value ?? [safeCheck.name];
 
+
 // Sync Checkboxs with Local Storage
 syncCheckBoxWithLS(filtersInLS);
+
 function syncCheckBoxWithLS(activedRatings) {
   filterCheckboxs.forEach((f) => {
     if (activedRatings.includes(f.name)) f.checked = true;

@@ -7,7 +7,7 @@ const loadNextPageEvent = new CustomEvent("custom:loadNextPage");
 // Scroll
 export function scrollActionUl() {
   const scrollPercentage = getScrollPercentage();
-  console.log({ scrollPercentage })
+
   if (scrollPercentage > 75 && !fetchNextPage.value)
   {
     fetchNextPage.value = true;

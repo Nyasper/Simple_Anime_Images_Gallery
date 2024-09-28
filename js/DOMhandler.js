@@ -22,7 +22,7 @@ document.addEventListener("custom:loadNextPage", async () => {
 
 const api = new ImageAPI();
 
-export async function newImageSearch() {
+export async function newImageSearch(searchTerm) {
 
   // reset states
   fetchNextPage.value = false;
@@ -32,7 +32,7 @@ export async function newImageSearch() {
   deleteLiElements();
 
   // fetch data
-  api.searchTerm = currentSearchTerm.value;
+  api.searchTerm = searchTerm;
   const images = await api.getImages();
 
   if (images.length > 0) createLiElements(images);
