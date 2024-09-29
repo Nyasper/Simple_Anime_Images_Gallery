@@ -9,6 +9,7 @@ export function handleSuggestions(searchTerm) {
     const results = allSuggestions.filter(s => {
       const matchName = s.name.toLowerCase().startsWith(searchTerm);
       const matchAlias = s.alias?.toLowerCase().startsWith(searchTerm);
+
       return matchName | matchAlias
     });
     createLiElement(results);

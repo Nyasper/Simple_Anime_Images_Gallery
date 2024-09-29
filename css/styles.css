@@ -110,6 +110,10 @@ body {
 	border-radius: 10px;
 }
 
+.suggestionActive {
+	background-color: rgb(8, 78, 78);
+}
+
 #clearButton:active {
 	background-color: rgb(0, 0, 0);
 }

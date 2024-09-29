@@ -5,7 +5,10 @@ import { fetchNextPage, currentSearchTerm } from "./globalStates.js";
 document.addEventListener("custom:loadNextPage", async () => {
   try 
   {
-    await newImagePageSearch(currentSearchTerm.value);
+    if (api.hasNextPage)
+    {
+      await newImagePageSearch(currentSearchTerm.value);
+    }
     if (api.hasNextPage)
     {
       fetchNextPage.value = false;
